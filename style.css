@@ -81,7 +81,9 @@ body {
 .colors li.blue {
   background-color: blue;
 }
-
+.colors li.pink {
+  background-color: pink;
+}
 .colors li.active {
   transform: scale(1.2);
 }

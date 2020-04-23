@@ -29,6 +29,7 @@ red.onclick = function () {
     red.classList.add('active')
     green.classList.remove('active')
     blue.classList.remove('active')
+    pink.classList.remove('active')
 }
 
 
@@ -38,6 +39,7 @@ green.onclick = function () {
     red.classList.remove('active')
     green.classList.add('active')
     blue.classList.remove('active')
+    pink.classList.remove('active')
 }
 
 blue.onclick = function () {
@@ -46,20 +48,31 @@ blue.onclick = function () {
     red.classList.remove('active')
     green.classList.remove('active')
     blue.classList.add('active')
+    pink.classList.remove('active')
 }
+
+pink.onclick = function () {
+    console.log('sd')
+    strokeStyle = 'pink'
+    pink.classList.add('active')
+    red.classList.remove('active')
+    green.classList.remove('active')
+    blue.classList.remove('active')
+}
+
 
 // 清空
 clear.onclick = function () {
-    content.clearRect(0,0,yyy.width,yyy.height)
+    content.clearRect(0, 0, yyy.width, yyy.height)
 }
 
 // 保存图片
-download.onclick = function() {
+download.onclick = function () {
     var url = yyy.toDataURL("image/png")
-    console.log('保存了hhh',url)
+    console.log('保存了hhh', url)
     var a = document.createElement('a')
     document.body.appendChild(a)
-    a.href=url
+    a.href = url
     a.download = 'imgs'
     a.target = '_blank'
     a.click()
