@@ -1,6 +1,7 @@
 var yyy = document.getElementById('xxx');
 var content = yyy.getContext('2d');
-
+var lineWidth = 5
+var strokeStyle = 'red'
 // 设置高宽
 autoSetCanvasSize(yyy)
 
@@ -8,19 +9,73 @@ lisentToUser(yyy)
 
 // 橡皮擦
 var eraserEnabled = false
+
+pen.onclick = function () {
+    eraserEnabled = false
+    pen.classList.add('active')
+    eraser.classList.remove('active')
+}
+
 eraser.onclick = function () {
     eraserEnabled = true
-    actions.className = 'actions x'
+    eraser.classList.add('active')
+    pen.classList.remove('active')
 }
 
-brush.onclick = function () {
-    eraserEnabled = false
-    actions.className = 'actions'
+red.onclick = function () {
+    console.log('sd')
+    strokeStyle = 'red'
+    red.classList.add('active')
+    green.classList.remove('active')
+    blue.classList.remove('active')
 }
 
 
+green.onclick = function () {
+    console.log('sd')
+    strokeStyle = 'green'
+    red.classList.remove('active')
+    green.classList.add('active')
+    blue.classList.remove('active')
+}
 
+blue.onclick = function () {
+    console.log('sd')
+    strokeStyle = 'blue'
+    red.classList.remove('active')
+    green.classList.remove('active')
+    blue.classList.add('active')
+}
 
+// 清空
+clear.onclick = function () {
+    content.clearRect(0,0,yyy.width,yyy.height)
+}
+
+// 保存图片
+download.onclick = function() {
+    var url = yyy.toDataURL("image/png")
+    console.log('保存了hhh',url)
+    var a = document.createElement('a')
+    document.body.appendChild(a)
+    a.href=url
+    a.download = 'imgs'
+    a.target = '_blank'
+    a.click()
+}
+
+// 线 
+thin.onclick = function () {
+    thin.classList.add('active')
+    thick.classList.remove('active')
+    lineWidth = 5
+}
+
+thick.onclick = function () {
+    thick.classList.add('active')
+    thin.classList.remove('active')
+    lineWidth = 10
+}
 
 
 
@@ -97,8 +152,9 @@ function lisentToUser(canvas) {
 
 function drawLine(x1, y1, x2, y2) {
     content.beginPath()
+    content.strokeStyle = strokeStyle
     content.moveTo(x1, y1)
-    content.lineWidth = 5
+    content.lineWidth = lineWidth
     content.lineTo(x2, y2)
     content.stroke()
 }
